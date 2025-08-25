@@ -110,8 +110,3 @@ python app.py
 
 cap = cv2.VideoCapture(0)       # For webcam
 cap = cv2.VideoCapture("prof1.mp4")  # For video file
-
-
-
-
-Do you want me to create that too?
