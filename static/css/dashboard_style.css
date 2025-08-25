@@ -1,0 +1,62 @@
+ body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #e0e5ec;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+.dashboard-container {
+    border-radius: 20px;
+    background: #e0e5ec;
+    box-shadow:
+    20px 20px 60px #bec3cf,
+    -20px -20px 60px #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #3d4468;
+}
+
+.video-stream {
+    border-radius: 15px;
+    box-shadow:
+    10px 10px 30px #bec3cf,
+    -10px -10px 30px #ffffff;
+    overflow: hidden;
+}
+
+.logout-btn {
+    margin-top: 20px;
+    background: #e0e5ec;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3d4468;
+    cursor: pointer;
+    box-shadow:
+    8px 8px 20px #bec3cf,
+    -8px -8px 20px #ffffff;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+    12px 12px 30px #bec3cf,
+    -12px -12px 30px #ffffff;
+}
+    
+.logout-btn:active {
+    box-shadow:
+    inset 4px 4px 10px #bec3cf,
+    inset -4px -4px 10px #ffffff;
+}

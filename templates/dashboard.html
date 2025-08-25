@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_style.css') }}">
+
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome, {{ user }}</h1>
+        <h3>Live Face Detection</h3>
+        <img src="{{ url_for('video_feed') }}" width="800" height="600">
+        <form action="{{ url_for('logout') }}" method="get">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
+
