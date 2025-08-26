@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cropped Faces (Live)</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/latest_cropped_faces_style.css') }}">
+  <!-- Auto-refresh every 3 seconds -->
+  <meta http-equiv="refresh" content="3">
+</head>
+<body>
+  <a href="{{ url_for('dashboard') }}"><button class="back-btn">⬅ Back to Dashboard</button></a>
+  <h2>Latest Current Cropped Faces</h2>
+  <div class="grid">
+    {% for name, img in images %}
+      <div class="card">
+        <img src="data:image/jpeg;base64,{{ img }}" alt="{{ name }}">
+        <p>{{ name }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

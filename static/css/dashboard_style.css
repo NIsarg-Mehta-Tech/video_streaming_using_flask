@@ -1,7 +1,12 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
  body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background: #e0e5ec;
-        min-height: 100vh;
+        min-height: 90vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -10,13 +15,17 @@
     }
 
 .dashboard-container {
-    border-radius: 20px;
+    border-radius: 30px;
     background: #e0e5ec;
     box-shadow:
-    20px 20px 60px #bec3cf,
-    -20px -20px 60px #ffffff;
+        20px 20px 60px #bec3cf,
+        -20px -20px 60px #ffffff;
     padding: 20px;
     text-align: center;
+    transition: all 0.3s ease;
+}
+.dashboard-container:hover {
+    transform: translateY(-5px);
 }
 
 h1 {
@@ -30,6 +39,13 @@ h1 {
     10px 10px 30px #bec3cf,
     -10px -10px 30px #ffffff;
     overflow: hidden;
+}
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
 .logout-btn {
@@ -56,6 +72,35 @@ h1 {
 }
     
 .logout-btn:active {
+    box-shadow:
+    inset 4px 4px 10px #bec3cf,
+    inset -4px -4px 10px #ffffff;
+}
+
+.cropped-btn {
+    margin-top: 20px;
+    background: #e0e5ec;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3d4468;
+    cursor: pointer;
+    box-shadow:
+    8px 8px 20px #bec3cf,
+    -8px -8px 20px #ffffff;
+    transition: all 0.3s ease;
+}
+
+.cropped-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+    12px 12px 30px #bec3cf,
+    -12px -12px 30px #ffffff;
+}
+
+.cropped-btn:active {
     box-shadow:
     inset 4px 4px 10px #bec3cf,
     inset -4px -4px 10px #ffffff;

@@ -1,8 +1,12 @@
+from uu import encode
+
 from database import *
 from flask import Flask, render_template, request, redirect, url_for, session, Response
 from dotenv import dotenv_values
 from face_detection import FaceDetector
 import cv2 as cv
+import base64
+from collections import deque
 
 config_env = {
     **dotenv_values(".env.secret")
@@ -24,6 +28,7 @@ cap = cv.VideoCapture(0)
 
 face_counter = get_next_face_counter()
 
+latest_cropped_faces = deque(maxlen=20)
 
 @app.route("/", methods=["GET", "POST"])
 def login():
@@ -70,6 +75,8 @@ def video_feed():
                     query = f"INSERT INTO `{TABLE_NAME}` (face_name, face) VALUES (%s, %s)"
                     cursor.execute(query, (face_name, face_bytes))
 
+                    latest_cropped_faces.append(buffer)
+
                 conn.commit()
                 cursor.close()
                 conn.close()
@@ -84,6 +91,40 @@ def video_feed():
     return Response(generate(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route("/latest_cropped_faces")
+def show_latest_cropped_faces():
+    if "user" not in session:
+        return redirect(url_for("login"))
+
+    images = []
+    for i, buffer in enumerate(latest_cropped_faces):
+        encoded = base64.b64encode(buffer).decode("utf-8")
+        images.append((f"face_{i}", encoded))
+
+    return render_template("latest_cropped_faces.html", images=images)
+
+
+@app.route("/all_cropped_faces")
+def all_cropped_faces():
+    if "user" not in session:
+        return redirect(url_for("login"))
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = f"SELECT face_name, face FROM `{TABLE_NAME}` ORDER BY id LIMIT 50"
+    cursor.execute(query)
+    results = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    images = []
+    for face_name, face_blob in results:
+        encoded = base64.b64encode(face_blob).decode("utf-8")
+        images.append((face_name, encoded))
+
+    return render_template("all_cropped_faces.html", images=images)
 @app.route("/logout")
 def logout():
     session.clear()

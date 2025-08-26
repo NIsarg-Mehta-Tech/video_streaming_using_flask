@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Cropped Faces</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all_cropped_faces_style.css') }}">
+</head>
+<body>
+    <div class="faces-container">
+        <h1>Latest 50 Cropped Faces</h1>
+        <div class="grid-container">
+            {% for name, img in images %}
+                <div class="grid-item">
+                    <img src="data:image/jpeg;base64,{{ img }}" alt="{{ name }}">
+                    <p>{{ name }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="back-btn">⬅ Back to Dashboard</a>
+    </div>
+</body>
+</html>
