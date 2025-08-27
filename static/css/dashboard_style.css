@@ -6,15 +6,19 @@
  body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background: #e0e5ec;
-        min-height: 90vh;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 20px;
     }
-
 .dashboard-container {
+    width: 100%;
+    max-width: 1080px;
+    border-radius: 32px;
+}
+.dashboard-card {
     border-radius: 30px;
     background: #e0e5ec;
     box-shadow:
@@ -24,7 +28,7 @@
     text-align: center;
     transition: all 0.3s ease;
 }
-.dashboard-container:hover {
+.dashboard-card:hover {
     transform: translateY(-5px);
 }
 

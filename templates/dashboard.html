@@ -9,19 +9,21 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <h1>Welcome, {{ user }}</h1>
-        <h3>Live Face Detection</h3>
-        <img src="{{ url_for('video_feed') }}" width="800" height="600" style="object-fit:cover;">
-        <div class="button-group">
-            <form action="{{ url_for('logout') }}" method="get">
-                <button type="submit" class="logout-btn">Logout</button>
-            </form>
-            <form action="{{ url_for('show_latest_cropped_faces') }}" method="get">
-                <button type="submit" class="cropped-btn">Show Latest Cropped Faces</button>
-            </form>
-            <form action="{{ url_for('all_cropped_faces') }}" method="get">
-                <button type="submit" class="cropped-btn">Show All Cropped Faces</button>
-            </form>
+        <div class="dashboard-card">
+            <h1>Welcome, {{ user }}</h1>
+            <h3>Live Face Detection</h3>
+            <img src="{{ url_for('video_feed') }}" width="800" height="600" style="object-fit:cover;">
+            <div class="button-group">
+                <form action="{{ url_for('logout') }}" method="get">
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+                <form action="{{ url_for('show_latest_cropped_faces') }}" method="get">
+                    <button type="submit" class="cropped-btn">Show Latest Cropped Faces</button>
+                </form>
+                <form action="{{ url_for('all_cropped_faces') }}" method="get">
+                    <button type="submit" class="cropped-btn">Show All Cropped Faces</button>
+                </form>
+            </div>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

@@ -1,3 +1,56 @@
+// Ambient Light for Login Page
+function setupLoginLight() {
+    document.addEventListener('mousemove', (e) => {
+        const card = document.querySelector('.login-card');
+        if (!card) return;
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const angleX = (x - centerX) / centerX;
+        const angleY = (y - centerY) / centerY;
+
+        // Smaller shadows since login card is compact
+        const shadowX = angleX * 20;
+        const shadowY = angleY * 20;
+
+        card.style.boxShadow = `
+            ${shadowX}px ${shadowY}px 40px #bec3cf,
+            ${-shadowX}px ${-shadowY}px 40px #ffffff
+        `;
+    });
+}
+
+// Ambient Light for Dashboard
+function setupDashboardLight() {
+    document.addEventListener('mousemove', (e) => {
+        const container = document.querySelector('.dashboard-container');
+        if (!container) return;
+
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const angleX = (x - centerX) / centerX;
+        const angleY = (y - centerY) / centerY;
+
+        // Bigger shadows since dashboard is wide
+        const shadowX = angleX * 40;
+        const shadowY = angleY * 40;
+
+        container.style.boxShadow = `
+            ${shadowX}px ${shadowY}px 70px #0f53f3ff,
+            ${-shadowX}px ${-shadowY}px 70px #e90b0bff
+        `;
+    });
+}
 class NeumorphismLoginForm {
     constructor() {
         this.form = document.getElementById('loginForm');
@@ -79,28 +132,6 @@ class NeumorphismLoginForm {
             this.updateAmbientLight(e);
         });
     }
-
-    updateAmbientLight(e) {
-        const card = document.querySelector('.login-card');
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const angleX = (x - centerX) / centerX;
-        const angleY = (y - centerY) / centerY;
-
-        const shadowX = angleX * 30;
-        const shadowY = angleY * 30;
-
-        card.style.boxShadow = `
-            ${shadowX}px ${shadowY}px 60px #bec3cf,
-            ${-shadowX}px ${-shadowY}px 60px #ffffff
-        `;
-    }
-
     addSoftPress(e) {
         const inputGroup = e.target.closest('.neu-input');
         inputGroup.style.transform = 'scale(0.98)';
@@ -274,5 +305,10 @@ if (!document.querySelector('#neu-keyframes')) {
 
 // Initialize the form when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new NeumorphismLoginForm();
+    if (document.querySelector('.login-card')) {
+        setupLoginLight();
+    }
+    if (document.querySelector('.dashboard-container')) {
+        setupDashboardLight();
+    }
 });
